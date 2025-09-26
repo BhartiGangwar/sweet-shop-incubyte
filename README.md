@@ -123,6 +123,8 @@ A detailed test report showing the results of the test suite is available here: 
 ## 🖼️ Application Screenshots
 
 * **[Insert Context: e.g., User Login Screen]**
+  ![App Screenshot]([https://raw.githubusercontent.com/USERNAME/REPO/main/assets/screenshot.png](https://github.com/BhartiGangwar/sweet-shop-incubyte/blob/main/Screenshots/demo_1.jpg?raw=true))
+
     
 * **[Insert Context: e.g., Sweet Shop Dashboard/Homepage]**
     
