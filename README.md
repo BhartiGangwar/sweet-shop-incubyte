@@ -122,16 +122,10 @@ A detailed test report showing the results of the test suite is available here: 
 
 ## 🖼️ Application Screenshots
 
-* **[Insert Context: e.g., User Login Screen]**
  [![App Screenshot](https://github.com/BhartiGangwar/sweet-shop-incubyte/blob/main/Screenshots/demo_1.jpg?raw=true)](https://github.com/BhartiGangwar/sweet-shop-incubyte/blob/main/Screenshots/demo_1.jpg?raw=true)
-
-
-    
-* **[Insert Context: e.g., Sweet Shop Dashboard/Homepage]**
-    
-* **[Insert Context: e.g., Admin Inventory Management View]**
-    
-* **[Insert Context: e.g., Search/Filter Results]**
+![Demo Screenshot](https://github.com/BhartiGangwar/sweet-shop-incubyte/blob/main/Screenshots/demo_2.jpg?raw=true)
+![Demo 3](https://github.com/BhartiGangwar/sweet-shop-incubyte/blob/main/Screenshots/demo_3.jpg?raw=true)
+![Demo 4](https://github.com/BhartiGangwar/sweet-shop-incubyte/blob/main/Screenshots/demo_4.jpg?raw=true)
     
 
 ***
