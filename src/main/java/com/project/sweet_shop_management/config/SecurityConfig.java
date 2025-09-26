@@ -26,15 +26,19 @@ import org.springframework.web.filter.CorsFilter;
  * It defines how requests are authenticated and authorized.
  *
  * Key Responsibilities:
- *  - Configure HTTP security rules (which endpoints are public, which need authentication)
- *  - Define authentication provider (how user details and passwords are verified)
- *  - Add JWT filter for token-based authentication
- *  - Set up session policy (stateless because we use JWT)
+ * - Configure HTTP security rules (which endpoints are public, which need
+ * authentication)
+ * - Define authentication provider (how user details and passwords are
+ * verified)
+ * - Add JWT filter for token-based authentication
+ * - Set up session policy (stateless because we use JWT)
  *
  * Annotations:
- *  @Configuration       → Marks this as a Spring configuration class
- *  @EnableWebSecurity   → Enables Spring Security’s web security support
- *  @EnableMethodSecurity → Allows using method-level security annotations like @PreAuthorize
+ * 
+ * @Configuration → Marks this as a Spring configuration class
+ * @EnableWebSecurity → Enables Spring Security’s web security support
+ * @EnableMethodSecurity → Allows using method-level security annotations
+ *                       like @PreAuthorize
  */
 @Configuration
 @EnableWebSecurity
@@ -65,11 +69,13 @@ public class SecurityConfig {
 
                 // Configure public and protected endpoints
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers(  "/api/auth/**",
+                        .requestMatchers("/api/auth/**",
                                 "/swagger-ui/**",
                                 "/v3/api-docs",
-                                "/v3/api-docs/*",
-                                "/v3/api-docs/**") // Allow authentication-related endpoints without login
+                                "/v3/api-docs/**",
+                                "/v3/api-docs.yaml",
+                                "/v3/api-docs.json",
+                                "/v3/api-docs.pdf") // Allow authentication-related endpoints without login
                         .permitAll()
                         .anyRequest().authenticated() // All other requests must be authenticated
                 )
@@ -78,9 +84,7 @@ public class SecurityConfig {
                 .httpBasic(Customizer.withDefaults())
 
                 // Ensure the application is stateless (no HTTP sessions stored on server)
-                .sessionManagement(session ->
-                        session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                )
+                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 
                 // Add JWT filter before UsernamePasswordAuthenticationFilter
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
@@ -89,13 +93,13 @@ public class SecurityConfig {
                 .build();
     }
 
-
-
     /**
      * Defines the authentication provider.
-     * Uses DaoAuthenticationProvider to fetch user details from DB and verify password.
+     * Uses DaoAuthenticationProvider to fetch user details from DB and verify
+     * password.
      *
-     * @return AuthenticationProvider configured with custom UserDetailsService and BCrypt encoder
+     * @return AuthenticationProvider configured with custom UserDetailsService and
+     *         BCrypt encoder
      */
     @Bean
     public AuthenticationProvider authenticationProvider() {
@@ -123,21 +127,18 @@ public class SecurityConfig {
 
     @Bean
     public FilterRegistrationBean coreFilter() {
-        UrlBasedCorsConfigurationSource source=new UrlBasedCorsConfigurationSource();
-        CorsConfiguration cors=new CorsConfiguration();
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        CorsConfiguration cors = new CorsConfiguration();
         cors.setAllowCredentials(true);
         cors.addAllowedOriginPattern("*");
         cors.addAllowedHeader("*");
         cors.addAllowedMethod("*");
         cors.setMaxAge(3600L);
-        source.registerCorsConfiguration("/", cors);
+        source.registerCorsConfiguration("/**", cors);
 
-        FilterRegistrationBean bean=new FilterRegistrationBean<>(new CorsFilter(source));
+        FilterRegistrationBean bean = new FilterRegistrationBean<>(new CorsFilter(source));
         bean.setOrder(-110);
         return bean;
 
-
     }
 }
-
-
