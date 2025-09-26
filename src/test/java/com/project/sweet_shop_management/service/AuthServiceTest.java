@@ -1,9 +1,8 @@
 package com.project.sweet_shop_management.service;
 
+import com.project.sweet_shop_management.model.LoginResponse;
 import com.project.sweet_shop_management.model.Users;
 import com.project.sweet_shop_management.repository.UserRepository;
-import com.project.sweet_shop_management.service.AuthService;
-import com.project.sweet_shop_management.service.JWTService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -26,6 +25,7 @@ class AuthServiceTest {
         userRepository = Mockito.mock(UserRepository.class);
         jwtService = Mockito.mock(JWTService.class);
         authenticationManager = Mockito.mock(AuthenticationManager.class);
+
         authService = new AuthService();
         authService.userRepository = userRepository;
         authService.jwtService = jwtService;
@@ -38,7 +38,8 @@ class AuthServiceTest {
         user.setName("john");
         user.setPassword("plain123");
 
-        when(userRepository.save(any(Users.class))).thenAnswer(i -> i.getArguments()[0]);
+        when(userRepository.save(any(Users.class)))
+                .thenAnswer(i -> i.getArguments()[0]);
 
         Users saved = authService.saveUser(user);
 
@@ -47,7 +48,7 @@ class AuthServiceTest {
     }
 
     @Test
-    void testLoginUserReturnsToken() {
+    void testLoginUserReturnsTokenAndUser() {
         Users user = new Users();
         user.setName("john");
         user.setPassword("plain123");
@@ -59,8 +60,19 @@ class AuthServiceTest {
         when(auth.isAuthenticated()).thenReturn(true);
         when(jwtService.generateToken("john")).thenReturn("fake-jwt-token");
 
-        String token = authService.loginUser(user);
+        // Mock DB lookup for user
+        Users dbUser = new Users();
+        dbUser.setName("john");
+        dbUser.setPassword("encryptedPass");
+        when(userRepository.findByName("john")).thenReturn(dbUser);
 
-        assertEquals("fake-jwt-token", token);
+        LoginResponse response = authService.loginUser(user);
+
+        assertNotNull(response);
+        assertEquals("fake-jwt-token", response.getToken());
+        assertEquals("john", response.getUser().getName());
+        verify(authenticationManager, times(1)).authenticate(any(UsernamePasswordAuthenticationToken.class));
+        verify(jwtService, times(1)).generateToken("john");
+        verify(userRepository, times(1)).findByName("john");
     }
 }
