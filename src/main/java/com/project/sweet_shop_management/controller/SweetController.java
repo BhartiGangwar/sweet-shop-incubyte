@@ -13,13 +13,14 @@ import java.util.List;
 public class SweetController {
 
     private final SweetService sweetService;
-
+    
     public SweetController(SweetService sweetService) {
         this.sweetService = sweetService;
     }
 
     // Add new sweet
     @PostMapping
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Sweet> addSweet(@RequestBody Sweet sweet) {
         return ResponseEntity.ok(sweetService.addSweet(sweet));
     }
@@ -48,6 +49,7 @@ public class SweetController {
 
     // Update sweet
     @PutMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Sweet> updateSweet(@PathVariable Long id, @RequestBody Sweet sweet) {
         return ResponseEntity.ok(sweetService.updateSweet(id, sweet));
     }
