@@ -126,7 +126,16 @@ A detailed test report showing the results of the test suite is available here: 
 ![Demo Screenshot](https://github.com/BhartiGangwar/sweet-shop-incubyte/blob/main/Screenshots/demo_2.jpg?raw=true)
 ![Demo 3](https://github.com/BhartiGangwar/sweet-shop-incubyte/blob/main/Screenshots/demo_3.jpg?raw=true)
 ![Demo 4](https://github.com/BhartiGangwar/sweet-shop-incubyte/blob/main/Screenshots/demo_4.jpg?raw=true)
-    
+![Demo 5](https://github.com/BhartiGangwar/sweet-shop-incubyte/blob/main/Screenshots/demo_5.jpg?raw=true)
+![Demo 6](https://github.com/BhartiGangwar/sweet-shop-incubyte/blob/main/Screenshots/demo_6.jpg?raw=true)
+![Demo 7](https://github.com/BhartiGangwar/sweet-shop-incubyte/blob/main/Screenshots/demo_7.jpg?raw=true)
+![Demo 8](https://github.com/BhartiGangwar/sweet-shop-incubyte/blob/main/Screenshots/demo_8.jpg?raw=true)
+![Demo 9](https://github.com/BhartiGangwar/sweet-shop-incubyte/blob/main/Screenshots/demo_9.jpg?raw=true)
+![Demo 10](https://github.com/BhartiGangwar/sweet-shop-incubyte/blob/main/Screenshots/demo_10.jpg?raw=true)
+![Demo 11](https://github.com/BhartiGangwar/sweet-shop-incubyte/blob/main/Screenshots/demo_11.jpg?raw=true)
+
+
+
 
 ***
 
